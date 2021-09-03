@@ -4,7 +4,16 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index()
+GET         /                           controllers.HomeController.index
+
+GET         /sign-in                    controllers.SignInController.view
+
+GET         /authenticate/:provider     controllers.SocialAuthController.authenticate(provider)
+
+GET         /authenticated              controllers.ApplicationController.authenticated
+GET         /not-authenticated          controllers.ApplicationController.notAuthenticated
+GET         /sign-out                   controllers.ApplicationController.signOut
+
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file               controllers.Assets.versioned(file)

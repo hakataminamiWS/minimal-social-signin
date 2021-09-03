@@ -1,1 +1,26 @@
 # https://www.playframework.com/documentation/latest/ScalaI18N
+
+access.denied = Access denied!
+could.not.authenticate = Could not authenticate with social provider! Please try again!
+
+sign.in.title = Silhouette - Sign In
+
+welcome.signed.in = Welcome, you are now signed in!
+
+error = Error!
+info = Info!
+success = Success!
+first.name = First name
+last.name = Last name
+full.name = Full name
+email = Email
+password = Password
+sign.in = Sign in
+sign.out = Sign out
+
+use.social = Use your existing account on one of the following services to sign in:
+
+google = Google
+
+authenticated.title = Authenticated - Title
+not.authenticated.title = Not Authenticated - Title

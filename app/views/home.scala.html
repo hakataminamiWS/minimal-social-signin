@@ -1,0 +1,16 @@
+@import play.api.mvc.RequestHeader
+@import play.api.i18n.Messages
+@import controllers.AssetsFinder
+
+@this()(implicit assets: AssetsFinder)
+@()(implicit request: RequestHeader, messages: Messages)
+
+@main("Welcome to Play") {
+<h1>Welcome to Play!</h1>
+<div>
+    <a href="@controllers.routes.ApplicationController.authenticated">@messages("authenticated")</a>
+</div>
+<div>
+    <a href="@controllers.routes.ApplicationController.notAuthenticated">@messages("not-authenticated")</a>
+</div>
+}

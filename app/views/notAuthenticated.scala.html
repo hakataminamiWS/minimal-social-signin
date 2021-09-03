@@ -1,0 +1,9 @@
+@import play.api.mvc.RequestHeader
+@import play.api.i18n.Messages
+@import controllers.AssetsFinder
+
+@()(implicit request: RequestHeader, messages: Messages, assets: AssetsFinder)
+
+@main(messages("not.authenticated.title")) {
+Not authenticated!
+}

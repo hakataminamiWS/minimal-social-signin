@@ -1,0 +1,23 @@
+@import play.api.i18n.Messages
+@import play.api.mvc.RequestHeader
+@import controllers.AssetsFinder
+@import com.mohiva.play.silhouette.impl.providers.SocialProviderRegistry
+
+@this()(implicit assets: AssetsFinder)
+@(socialProviders: SocialProviderRegistry)(implicit request: RequestHeader, messages: Messages)
+
+@main(messages("sign.in.title")) {
+<fieldset class="col-md-6 col-md-offset-3">
+    <legend>@messages("use.social")</legend>
+
+    <div class="social-providers">
+        <div>
+            @for(p <- socialProviders.providers) { <a href="@controllers.routes.SocialAuthController.authenticate(p.id)"
+                class="provider @p.id" title="@messages(p.id)">
+                <img src='@assets.path(s"images/providers/${p.id}.png")' alt="@messages(p.id)"></a>
+                }
+        </div>
+    </div>
+
+</fieldset>
+}

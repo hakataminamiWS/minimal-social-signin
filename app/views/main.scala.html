@@ -1,25 +1,51 @@
+@import play.api.i18n.Messages
+@import play.api.mvc.RequestHeader
+@import controllers.AssetsFinder
+
 @*
- * This template is called from the `index` template. This template
- * handles the rendering of the page header and body tags. It takes
- * two arguments, a `String` for the title of the page and an `Html`
- * object to insert into the body of the page.
- *@
-@(title: String)(content: Html)
+* This template is called from the `index` template. This template
+* handles the rendering of the page header and body tags. It takes
+* two arguments, a `String` for the title of the page and an `Html`
+* object to insert into the body of the page.
+*@
+@(title: String, user: Option[models.User] = None)(content: Html)(implicit request: RequestHeader, messages: Messages,
+assets: AssetsFinder)
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        @* Here's where we render the page title `String`. *@
-        <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
 
-    </head>
-    <body>
-        @* And here's where we render the `Html` object containing
-         * the page content. *@
-        @content
+<head>
+    @* Here's where we render the page title `String`. *@
+    <title>@title</title>
+    <link rel="stylesheet" media="screen" href='@assets.path("stylesheets/main.css")'>
+    <link rel="shortcut icon" type="image/png" href='@assets.path("images/favicon.png")'>
 
-      <script src="@routes.Assets.versioned("javascripts/main.js")" type="text/javascript"></script>
-    </body>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup2">
+                <div class="navbar-nav">
+                    @user.map { u =>
+                    <a class="nav-link" href="@controllers.routes.ApplicationController.authenticated">@u.name</a>
+                    <a class="nav-item nav-link"
+                        href="@controllers.routes.ApplicationController.signOut">@messages("sign.out")</a>
+                    }.getOrElse {
+                    <a class="nav-item nav-link"
+                        href="@controllers.routes.SignInController.view">@messages("sign.in")</a>
+                    }
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+    @* And here's where we render the `Html` object containing
+    * the page content. *@
+    @content
+
+    <script src='@assets.path("javascripts/main.js")' type="text/javascript"></script>
+</body>
+
 </html>
